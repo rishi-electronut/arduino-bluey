@@ -16,7 +16,7 @@
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 name=Electronut labs nRF5 boards
-version=0.1.0
+version=0.1.2
 
 # Compile variables
 # -----------------
@@ -149,3 +149,21 @@ tools.nrfutil.cmd.windows=dist/nrfutil.exe
 tools.nrfutil.upload.params.verbose=--verbose
 tools.nrfutil.upload.params.quiet=
 tools.nrfutil.upload.pattern="{path}/{cmd}" dfu serial --package={build.path}/{build.project_name}.zip --port={serial.port} --baudrate={upload.speed}
+
+
+#
+# gdb upload using bmp
+#
+tools.gdb.path={runtime.tools.gcc-arm-none-eabi-5_2-2015q4.path}/bin/
+tools.gdb.cmd=arm-none-eabi-gdb
+tools.gdb.program.params.verbose=''
+tools.gdb.program.params.quiet=''
+tools.gdb.program.pattern="{path}/{cmd}" {build.path}/{build.project_name}.elf -ex "tar ext {serial.port}" -ex "mon swdp_scan" -ex "attach 1" -ex "load" -ex "quit"
+
+tools.gdb.bootloader.params.verbose=
+tools.gdb.bootloader.params.quiet=
+tools.gdb.bootloader.pattern="{path}/{cmd}" -n -q -ex "tar ext {serial.port}" -ex "mon swdp_scan" -ex "attach 1" -ex "load {runtime.platform.path}/bootloaders/{bootloader.file}" -ex "quit"
+
+tools.gdb.erase.params.verbose=
+tools.gdb.erase.params.quiet=
+tools.gdb.erase.pattern=

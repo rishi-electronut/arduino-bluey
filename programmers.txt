@@ -21,3 +21,11 @@ cmsisdap.program.protocol=
 cmsisdap.program.tool=openocd
 cmsisdap.program.interface=cmsis-dap
 cmsisdap.program.setup_command=;
+
+bumpy.name=Bumpy
+bumpy.communication=serial
+bumpy.protocol=
+bumpy.program.protocol=
+bumpy.program.tool=gdb
+bumpy.program.interface=
+bumpy.program.setup_command=;
